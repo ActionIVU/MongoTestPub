@@ -37,13 +37,6 @@ body {
     margin-bottom: 10px;
     padding: 8px;
 }
-.form button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 .center {
     display: flex;
     justify-content: center;
@@ -69,8 +62,7 @@ app.get('/', function(req, res) {
               <button type="submit">Login</button>
             </form>
         </div>
-        <div class="center">or</div>
-        <div class="form">
+        <div class="form"> <!-- Adjusted form for register -->
             <h2>Register</h2>
             <form action="/register" method="post">
               <input type="text" name="UserID" placeholder="User ID" required><br>
