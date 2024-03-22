@@ -12,6 +12,46 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// CSS styles
+const styles = `
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 800px;
+}
+.form {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.form input {
+    margin-bottom: 10px;
+    padding: 8px;
+}
+.form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+`;
+
 // Default route
 app.get('/', function(req, res) {
   // Check for authentication cookie
@@ -19,17 +59,26 @@ app.get('/', function(req, res) {
     res.send(`Authentication cookie exists. Value: ${req.cookies.auth}`);
   } else {
     res.send(`
-      <h2>Login or Register</h2>
-      <form action="/login" method="post">
-        <input type="text" name="UserID" placeholder="User ID" required><br>
-        <input type="password" name="UserPass" placeholder="Password" required><br>
-        <button type="submit">Login</button>
-      </form>
-      <form action="/register" method="post">
-        <input type="text" name="UserID" placeholder="User ID" required><br>
-        <input type="password" name="UserPass" placeholder="Password" required><br>
-        <button type="submit">Register</button>
-      </form>
+      <style>${styles}</style>
+      <div class="container">
+        <div class="form">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+              <input type="text" name="UserID" placeholder="User ID" required><br>
+              <input type="password" name="UserPass" placeholder="Password" required><br>
+              <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="center">or</div>
+        <div class="form">
+            <h2>Register</h2>
+            <form action="/register" method="post">
+              <input type="text" name="UserID" placeholder="User ID" required><br>
+              <input type="password" name="UserPass" placeholder="Password" required><br>
+              <button type="submit">Register</button>
+            </form>
+        </div>
+      </div>
     `);
   }
 });
