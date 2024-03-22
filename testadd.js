@@ -26,8 +26,8 @@ app.get('/', function(req, res) {
         <button type="submit">Login</button>
       </form>
       <form action="/register" method="post">
-        <input type="text" name="user_ID" placeholder="User ID" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="text" name="UserID" placeholder="User ID" required><br>
+        <input type="password" name="UserPass" placeholder="Password" required><br>
         <button type="submit">Register</button>
       </form>
     `);
@@ -64,7 +64,7 @@ app.post('/login', async (req, res) => {
     const collection = database.collection('KBthings2');
     const user = await collection.findOne({ UserID, UserPass });
     if (user) {
-      res.cookie('auth', user_ID, { maxAge: 60000 }); // Set authentication cookie
+      res.cookie('auth', UserID, { maxAge: 60000 }); // Set authentication cookie
       res.redirect('/');
     } else {
       res.send('Invalid credentials. <a href="/">Go back</a>');
