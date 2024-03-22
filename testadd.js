@@ -50,13 +50,31 @@ body {
     align-items: center;
     width: 10%;
 }
+.links {
+    text-align: center;
+}
+.links a {
+    margin: 10px;
+}
 `;
 
 // Default route
 app.get('/', function(req, res) {
   // Check for authentication cookie
   if (req.cookies.auth) {
-    res.send(`Authentication cookie exists. Value: ${req.cookies.auth}`);
+    res.send(`
+      <style>${styles}</style>
+      <div class="container">
+        <div class="form">
+            <h2>Authentication cookie exists.</h2>
+            <p>Value: ${req.cookies.auth}</p>
+        </div>
+      </div>
+      <div class="links">
+        <a href="/print-cookies">Print All Cookies</a>
+        <a href="/clear-cookie">Clear Authentication Cookie</a>
+      </div>
+    `);
   } else {
     res.send(`
       <style>${styles}</style>
@@ -78,6 +96,9 @@ app.get('/', function(req, res) {
               <button type="submit">Register</button>
             </form>
         </div>
+      </div>
+      <div class="links">
+        <a href="/print-cookies">Print All Cookies</a>
       </div>
     `);
   }
@@ -130,6 +151,11 @@ app.post('/login', async (req, res) => {
 app.get('/clear-cookie', (req, res) => {
   res.clearCookie('auth');
   res.send('Authentication cookie cleared. <a href="/">Go back</a>');
+});
+
+// Print cookies route
+app.get('/print-cookies', (req, res) => {
+  res.send(`<pre>${JSON.stringify(req.cookies, null, 2)}</pre> <a href="/">Go back</a>`);
 });
 
 // Listen on port
