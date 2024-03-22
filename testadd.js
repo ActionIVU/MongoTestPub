@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 // Provides a selection of routes to go to as links.
 app.get('/', function(req, res) {
   var outstring = 'Default endpoint starting on date: ' + Date.now();
-  outstring += '<p><a href=\"./task1\">Go to Task 1</a>';
-  outstring += '<p><a href=\"./task2\">Go to Task 2</a>';
+  outstring += '<p><a href=\"./task1\">login</a>';
+  outstring += '<p><a href=\"./task2\">register</a>';
   res.send(outstring);
 });
 
