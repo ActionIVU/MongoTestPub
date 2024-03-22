@@ -22,19 +22,16 @@ body {
     margin: 0;
 }
 .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: space-between;
     width: 80%;
     max-width: 800px;
 }
 .form {
-    width: 80%;
+    width: 45%;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 .form input {
     margin-bottom: 10px;
@@ -42,13 +39,16 @@ body {
 }
 .form button {
     padding: 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
 }
 .center {
-    grid-column: span 2;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
 }
 `;
 
