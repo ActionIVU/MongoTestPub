@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
 // The uri string must be the connection string for the database (obtained on Atlas).
-const uri = "mongodb+srv://<user>:<password>@ckmdb.5oxvqja.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://testUser:testUser@cluster0.7t81nhs.mongodb.net/KBdb2/KBthings2?retryWrites=true&w=majority&appName=Cluster0";
 
 // --- This is the standard stuff to get it to work on the browser
 const express = require('express');
@@ -47,17 +47,17 @@ const client = new MongoClient(uri);
 
 async function run() {
   try {
-    const database = client.db('ckmdb');
-    const parts = database.collection('cmps415');
+    const database = client.db('KBdb2');
+    const Users = database.collection('KBthings2');
 
     // Here we make a search query where the key is hardwired to 'partID' 
     // and the value is picked from the input parameter that comes in the route
-     const query = { partID: req.params.item };
+     const query = { UserID: req.params.item };
      console.log("Looking for: " + query);
 
-    const part = await parts.findOne(query);
-    console.log(part);
-    res.send('Found this: ' + JSON.stringify(part));  //Use stringify to print a json
+    const UserID = await Users.findOne(query);
+    console.log(UserID);
+    res.send('Found this: ' + JSON.stringify(UserID));  //Use stringify to print a json
 
   } finally {
     // Ensures that the client will close when you finish/error
@@ -88,9 +88,9 @@ async function run() {
 
     console.log("Looking for: " + JSON.stringify(query));
 
-    const part = await where2look.findOne(query);
-    console.log('Found this entry: ', part);
-    res.send('Found this: ' + JSON.stringify(part));  //Use stringify to print a json
+    const UserID = await where2look.findOne(query);
+    console.log('Found this entry: ', UserID);
+    res.send('Found this: ' + JSON.stringify(UserID));  //Use stringify to print a json
 
   } finally {
     // Ensures that the client will close when you finish/error
@@ -124,8 +124,8 @@ console.log("Adding: " + doc2insert);
 
 async function run() {
   try {
-    const database = client.db('ckmdb');
-    const where2put = database.collection('cmps415');
+    const database = client.db('KBdb2');
+    const where2put = database.collection('KBthings2');
 
     const doit = await where2put.insertOne(doc2insert);
     console.log(doit);
