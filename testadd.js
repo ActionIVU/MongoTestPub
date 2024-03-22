@@ -150,7 +150,7 @@ app.post('/login', async (req, res) => {
 // Clear cookie route
 app.get('/clear-cookie', (req, res) => {
   res.clearCookie('auth');
-  res.send('Authentication cookie cleared. <a href="/">Go back</a>');
+  res.send('Authentication cookie cleared. <a href="/">Go back to home page</a>');
 });
 
 // Print cookies route
